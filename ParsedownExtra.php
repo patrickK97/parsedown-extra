@@ -17,7 +17,7 @@ class ParsedownExtra extends Parsedown
 {
     # ~
 
-    const version = '0.9.2';
+    const version = '0.9.3';
 
     # ~
 
@@ -237,7 +237,7 @@ class ParsedownExtra extends Parsedown
         {
             return;
         }
-        if()
+
         if (preg_match('/^<(\w[\w-]*)(?:[ ]*'.$this->regexHtmlAttribute.')*[ ]*(\/)?>/', $Line['text'], $matches))
         {
             $element = strtolower($matches[1]);
@@ -333,7 +333,7 @@ class ParsedownExtra extends Parsedown
 
     protected function blockSetextHeader($Line, array $Block = null)
     {
-        $Block = parent::blockSetextHeader($Line, $Block);+
+        $Block = parent::blockSetextHeader($Line, $Block);
 
         if ($Block) {
             if ($Block !== null && preg_match('/[ ]*{('.$this->regexAttribute.'+)}[ ]*$/', $Block['element']['handler']['argument'], $matches, PREG_OFFSET_CAPTURE))
