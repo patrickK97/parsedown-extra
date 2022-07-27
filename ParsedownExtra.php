@@ -237,7 +237,7 @@ class ParsedownExtra extends Parsedown
         {
             return;
         }
-
+        if()
         if (preg_match('/^<(\w[\w-]*)(?:[ ]*'.$this->regexHtmlAttribute.')*[ ]*(\/)?>/', $Line['text'], $matches))
         {
             $element = strtolower($matches[1]);
@@ -333,15 +333,17 @@ class ParsedownExtra extends Parsedown
 
     protected function blockSetextHeader($Line, array $Block = null)
     {
-        $Block = parent::blockSetextHeader($Line, $Block);
+        $Block = parent::blockSetextHeader($Line, $Block);+
 
-        if ($Block !== null && preg_match('/[ ]*{('.$this->regexAttribute.'+)}[ ]*$/', $Block['element']['handler']['argument'], $matches, PREG_OFFSET_CAPTURE))
-        {
-            $attributeString = $matches[1][0];
+        if ($Block) {
+            if ($Block !== null && preg_match('/[ ]*{('.$this->regexAttribute.'+)}[ ]*$/', $Block['element']['handler']['argument'], $matches, PREG_OFFSET_CAPTURE))
+            {
+                $attributeString = $matches[1][0];
 
-            $Block['element']['attributes'] = $this->parseAttributeData($attributeString);
+                $Block['element']['attributes'] = $this->parseAttributeData($attributeString);
 
-            $Block['element']['handler']['argument'] = substr($Block['element']['handler']['argument'], 0, $matches[0][1]);
+                $Block['element']['handler']['argument'] = substr($Block['element']['handler']['argument'], 0, $matches[0][1]);
+            }
         }
 
         return $Block;
